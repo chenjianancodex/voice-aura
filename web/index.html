@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="AI 声鉴所 · 30秒鉴定你的声音灵魂：念一段文字，测出你的专属声音人格、声音估值与五维声学雷达。" />
+  <meta name="theme-color" content="#0a0d18" />
+  <title>AI 声鉴所 · 30秒鉴定你的声音灵魂</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%99%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <header class="topbar">
+    <div class="logo">🎙 <b>AI 声鉴所</b></div>
+    <div class="slogan">30 秒，鉴定你的声音灵魂</div>
+  </header>
+
+  <main>
+    <!-- ============ 首页 ============ -->
+    <section id="screen-home" class="screen active">
+      <div class="hero">
+        <h1>你的声音，<span class="grad">值多少钱？</span></h1>
+        <p class="sub">AI 声学鉴定 × 声音人格报告<br />念一段文字，测出你的专属声音人格</p>
+      </div>
+      <div class="steps-hint">📋 选一段文案 → 🎤 朗读录音 → 🔮 生成声音人格报告</div>
+
+      <h2 class="sec-title">第一步 · 选一段你想念的话</h2>
+      <div class="script-list" id="scriptList"></div>
+
+      <button id="btnStart" class="btn primary big block">开始我的声音鉴定 →</button>
+
+      <ul class="trust">
+        <li>🔒 录音仅用于本次分析，不做存储</li>
+        <li>📊 本地声纹特征提取 + AI 全模态深度分析</li>
+        <li>🎁 每个人都有专属隐藏款人格等你解锁</li>
+      </ul>
+    </section>
+
+    <!-- ============ 录音页 ============ -->
+    <section id="screen-record" class="screen">
+      <h2 class="sec-title">第二步 · 请朗读下面这段话</h2>
+      <div class="script-card chosen" id="scriptCard"></div>
+
+      <div class="rec-stage glass">
+        <canvas id="waveCanvas" height="120"></canvas>
+        <button id="btnRec" class="rec-btn" aria-label="开始录音"><span>🎤</span></button>
+        <div class="rec-timer" id="recTimer">00:00</div>
+        <div class="rec-hint" id="recHint">点击开始录音 · 建议 15~30 秒</div>
+      </div>
+
+      <div id="recActions" class="rec-actions hidden">
+        <audio id="player" controls></audio>
+        <div class="row">
+          <button id="btnRedo" class="btn ghost">↺ 重录</button>
+          <button id="btnAnalyze" class="btn primary">开始鉴定 ✨</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 分析页 ============ -->
+    <section id="screen-analyze" class="screen">
+      <div class="crystal"><span>🔮</span></div>
+      <h2 class="analyzing-title">正在鉴定你的声音…</h2>
+      <ol class="analyze-steps" id="analyzeSteps">
+        <li><i>1</i>本地声纹特征提取</li>
+        <li><i>2</i>AI 全模态声学分析</li>
+        <li><i>3</i>生成专属声音人格</li>
+      </ol>
+      <div class="tips" id="analyzeTip">小提示：越放松，声音越好听</div>
+    </section>
+
+    <!-- ============ 结果页 ============ -->
+    <section id="screen-result" class="screen">
+      <div class="glass result-hero">
+        <div class="report-tag">VOICE AURA REPORT · 声音鉴定报告</div>
+        <div class="persona-emoji" id="rEmoji">🎙</div>
+        <h2 class="persona-name grad" id="rName"></h2>
+        <div class="persona-title" id="rTitle"></div>
+        <p class="tagline" id="rTagline"></p>
+      </div>
+
+      <div class="stat-row">
+        <div class="glass stat">
+          <div class="stat-label">你的声音估值</div>
+          <div class="stat-value gold">¥<span id="rValue"></span></div>
+          <div class="stat-unit">/ 15 秒商业配音</div>
+        </div>
+        <div class="glass stat">
+          <div class="stat-label">全国击败率</div>
+          <div class="stat-value grad"><span id="rBeat"></span>%</div>
+          <div class="beat-bar"><i id="rBeatBar"></i></div>
+        </div>
+      </div>
+
+      <div class="glass radar-box">
+        <h3>五维声音雷达</h3>
+        <canvas id="radar" width="640" height="580"></canvas>
+      </div>
+
+      <div class="glass report">
+        <h3>🧾 AI 声学诊断书</h3>
+        <p class="quote" id="rQuote"></p>
+        <div class="diag"><b>音色印象</b><p id="rDiagTimbre"></p></div>
+        <div class="diag"><b>表达高光</b><p id="rDiagHighlight"></p></div>
+        <div class="diag"><b>隐藏彩蛋</b><p id="rDiagEaster"></p></div>
+      </div>
+
+      <div class="glass hidden-persona">
+        <h3>🎁 隐藏款人格</h3>
+        <p><b id="rHiddenName"></b><span id="rHiddenNote"></span></p>
+      </div>
+
+      <div class="glass">
+        <h3>🎯 你的声音主场</h3>
+        <div class="chips" id="rScenes"></div>
+      </div>
+
+      <div class="glass">
+        <h3>📖 声音使用说明书</h3>
+        <ul class="manual" id="rManual"></ul>
+      </div>
+
+      <div class="row actions">
+        <button id="btnShare" class="btn primary big">📤 分享结果</button>
+        <button id="btnRetest" class="btn ghost big">🔄 再测一次</button>
+      </div>
+      <div class="retest-extra"><a href="#" id="btnChangeScript">换个文案再测 →</a></div>
+      <p class="disclaimer">结果由 AI 生成，仅供娱乐 · 录音仅用于本次分析，不做存储</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+  <div id="mockBanner" class="mock-banner hidden">演示模式：未接入 AI 后端，结果为本地模拟数据</div>
+
+  <script src="config.js"></script>
+  <script src="audio.js"></script>
+  <script src="share.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

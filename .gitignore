@@ -1,0 +1,12 @@
+# 密钥与本地配置 —— 永远不进仓库
+secrets/
+.dev.vars
+
+# 依赖与构建产物
+node_modules/
+.wrangler/
+dist/
+
+# 系统文件
+.DS_Store
+*.log
