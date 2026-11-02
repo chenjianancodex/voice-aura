@@ -10,3 +10,8 @@ dist/
 # 系统文件
 .DS_Store
 *.log
+
+# 测试产物不入库
+scripts/test-*.wav
+scripts/test-*.json
+scripts/*-result.json
