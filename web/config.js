@@ -7,5 +7,5 @@
  *  - 在 Cloudflare Worker 自带站点（wrangler dev / workers.dev）上留空即可（同源直连）。
  */
 window.APP_CONFIG = {
-  API_BASE: "",
+  API_BASE: "https://voice-aura-api.peach-blossom-fortune.workers.dev",
 };

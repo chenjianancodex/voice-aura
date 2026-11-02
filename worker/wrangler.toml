@@ -11,4 +11,4 @@ binding = "ASSETS"
 [vars]
 MODEL = "qwen3.8-omni-flash"
 # 允许跨域调用 API 的来源（部署 GitHub Pages 后把 pages 域名加进来，逗号分隔）
-ALLOWED_ORIGINS = "http://127.0.0.1:8787,http://localhost:8787"
+ALLOWED_ORIGINS = "http://127.0.0.1:8787,http://localhost:8787,https://chenjianancodex.github.io"
